@@ -46,7 +46,7 @@ async function invoke(messages: Message[]) {
   let retryCount = 0;
   while (true) {
     console.log("retryCount", retryCount);
-    const response = await fetch("http://127.0.0.1:11434/api/chat", {
+    const response = await fetch("http://localhost:11434/api/chat", {
       method: "POST",
       body: JSON.stringify({
         model: "mistral-small3.1",
@@ -94,7 +94,7 @@ async function invoke(messages: Message[]) {
 
           // 일반 텍스트 응답 처리
           if (json.message?.content) {
-            console.log(json.message.content);
+            process.stdout.write(json.message.content);
           }
         } catch (e) {
           console.error("Failed to parse JSON:", e);
